@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { Grid, Cell, Button } from 'react-md';
 import { bindActionCreators } from 'redux';
 
-import * as productActions from '../actions/productActions';
+import loadProducts from '../actions/productActions';
 import ProductList from '../components/products/ProductList';
+import { Loading } from '../components/common';
 
 class ProductsPage extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class ProductsPage extends Component {
   }
 
   componentWillMount() {
-    this.props.actions.loadProducts();
+    this.props.loadProducts();
   }
 
   filterProducts() {
@@ -37,6 +38,9 @@ class ProductsPage extends Component {
   render() {
     const filteredProducts = this.filterProducts();
     const { mode } = this.state;
+    if (this.props.loading) {
+      return <Loading />;
+    }
     return (
       <Grid>
         <Cell size={12}>
@@ -65,7 +69,7 @@ const mapStateToProps = reducers => reducers.productsReducer;
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(productActions, dispatch),
+    loadProducts: bindActionCreators(loadProducts, dispatch),
   };
 }
 

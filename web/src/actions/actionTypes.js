@@ -1,3 +1,3 @@
-export const BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL';
-export const AJAX_CALL_ERROR = 'AJAX_CALL_ERROR';
-export const LOAD_PRODUCTS_SUCCESS = 'LOAD_PRODUCTS_SUCCESS';
+export const LOAD_PRODUCTS = 'LOAD_PRODUCTS';
+export const LOADING = 'LOADING';
+export const ERROR = 'ERROR';

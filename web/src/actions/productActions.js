@@ -1,37 +1,22 @@
 import * as types from './actionTypes';
 import productsApi from '../api/productsApi';
-import { beginAjaxCall, ajaxCallError } from './ajaxStatusActions';
 
-export function loadProductsSuccess(products) {
-  return { type: types.LOAD_PRODUCTS_SUCCESS, products };
-}
-
-export const loadProducts = () => async (dispatch) => {
+const loadProducts = () => async (dispatch) => {
+  dispatch({
+    type: types.LOADING,
+  });
   try {
-    dispatch(beginAjaxCall());
     const products = await productsApi.getProducts();
     dispatch({
-      type: types.LOAD_PRODUCTS_SUCCESS,
+      type: types.LOAD_PRODUCTS,
       payload: products,
     });
   } catch (err) {
-    dispatch(ajaxCallError());
-    throw err;
+    dispatch({
+      type: types.ERROR,
+      payload: err.message,
+    });
   }
 };
 
-/* export function loadProducts() {
-  return dispatch => dispatch(productsApi.getProducts());
-   return (dispatch) => {
-    dispatch(beginAjaxCall());
-    return productsApi
-      .getProducts()
-      .then((products) => {
-        dispatch(loadProductsSuccess(products));
-      })
-      .catch((error) => {
-        dispatch(ajaxCallError());
-        throw error;
-      });
-  };
-} */
+export default loadProducts;
