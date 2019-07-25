@@ -1,0 +1,23 @@
+.navigation-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  ul {
+    list-style: none;
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
+    li {
+      display: inline-block;
+      a {
+        text-decoration: none;
+        padding: 0 20px;
+        color: #fff;
+        &:hover,
+        &.active {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
