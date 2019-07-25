@@ -10,7 +10,7 @@ const HeaderNavigation = (
         </NavLink>
       </li>
       <li>
-        <NavLink activeClassName="active" exact to="/products">
+        <NavLink activeClassName="active" to="/products">
           Products
         </NavLink>
       </li>
