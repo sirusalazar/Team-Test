@@ -2,6 +2,8 @@
 import React from 'react';
 import { Button } from 'react-md';
 import { Field, reduxForm } from 'redux-form';
+import PropTypes from 'prop-types';
+
 import customInput from '../../common/Form/fields';
 
 let ContactForm = ({ handleSubmit, handleChange }) => (
@@ -54,6 +56,12 @@ let ContactForm = ({ handleSubmit, handleChange }) => (
     </div>
   </form>
 );
+
+ContactForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
+
 ContactForm = reduxForm({
   form: 'contactForm',
 })(ContactForm);

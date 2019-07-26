@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, TextField } from 'react-md';
 
 const ProductHeader = ({
@@ -33,4 +34,11 @@ const ProductHeader = ({
     </div>
   </div>
 );
+
+ProductHeader.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+  onChangeViewMode: PropTypes.func.isRequired,
+  filteredProducts: PropTypes.number.isRequired,
+  totalProducts: PropTypes.number.isRequired,
+};
 export default ProductHeader;

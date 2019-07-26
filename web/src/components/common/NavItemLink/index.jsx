@@ -32,4 +32,11 @@ NavItemLink.propTypes = {
   exact: PropTypes.bool,
   icon: PropTypes.node,
 };
+
+NavItemLink.defaultProps = {
+  to: '',
+  exact: true,
+  icon: {},
+};
+
 export default NavItemLink;

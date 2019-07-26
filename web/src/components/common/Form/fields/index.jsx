@@ -1,6 +1,8 @@
 import React from 'react';
 import { TextField } from 'react-md';
 
+import PropTypes from 'prop-types';
+
 const getValidityState = (meta) => {
   if (meta.active) {
     return;
@@ -13,14 +15,6 @@ const getValidityState = (meta) => {
   if (meta.touched && meta.valid) {
     return true;
   }
-};
-
-const getErrorText = (meta) => {
-  let error = '';
-  if (meta.error && meta.touched && !meta.active) {
-    error = meta.error;
-  }
-  return error;
 };
 
 const customInput = (props) => {
@@ -51,33 +45,21 @@ const customInput = (props) => {
   );
 };
 
+customInput.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  meta: PropTypes.shape({}).isRequired,
+  placeholder: PropTypes.string.isRequired,
+  error: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  length: PropTypes.number.isRequired,
+  rows: PropTypes.number,
+  change: PropTypes.func.isRequired,
+};
+
+customInput.defaultProps = {
+  rows: 1,
+  name: '',
+};
+
 export default customInput;
-
-/* <TextField
-      {...input}
-      id="floating-label-error-text-field"
-      label={label}
-      placeholder={placeholder}
-      rows={rows || 1}
-      className="md-cell md-cell--top"
-      error={getValidityState(meta)}
-      errorText={getErrorText(meta)}
-  /> */
-
-/* <div className="form-label-group">
-            <input
-                type={type}
-                placeholder={placeholder}
-                value={value}
-                className={cx(
-                    'form-control form-control-flush',
-                    { dirty: meta.dirty },
-                    getValidityClassName(meta),
-                )}
-                {...input}
-            />
-            <label>{label}</label>
-            {meta.error && meta.touched && !meta.active && (
-                <div className="feedback-text error-text">{meta.error}</div>
-            )}
-            </div> */

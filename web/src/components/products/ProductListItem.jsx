@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardTitle, CardText } from 'react-md';
 
 const ProductListItem = ({
@@ -36,6 +37,26 @@ const ProductListItem = ({
       </CardText>
     </Card>
   );
+};
+
+ProductListItem.propTypes = {
+  name: PropTypes.string,
+  photo: PropTypes.string,
+  description: PropTypes.string,
+  categories: PropTypes.arrayOf(PropTypes.string),
+  brand: PropTypes.string,
+  price: PropTypes.string,
+  stock: PropTypes.number,
+};
+
+ProductListItem.defaultProps = {
+  name: '',
+  photo: '',
+  description: '',
+  categories: [],
+  brand: '',
+  price: '',
+  stock: '',
 };
 
 export default ProductListItem;

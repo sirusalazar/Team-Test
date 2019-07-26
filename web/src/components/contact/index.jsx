@@ -15,7 +15,8 @@ class ContactContainer extends Component {
 
   async handleSubmit() {
     try {
-      const response = await ContactApi.saveContact(this.state.values);
+      const { values } = this.state;
+      const response = await ContactApi.saveContact(values);
       if (response) {
         NotificationHandler.showSuccess('Contact saved successfully');
       }
