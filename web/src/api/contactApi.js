@@ -11,7 +11,6 @@ class ContactApi {
     options.body = JSON.stringify(contact);
     const response = await fetch('http://localhost:5001/contact', options);
     const data = await response.json();
-    // const data = await require('../assets/products.json');
     return data;
   }
 }
