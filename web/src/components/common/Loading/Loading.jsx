@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Loading = () => (
-  <div className="lds-ring">
+  <div className="loading-ring">
     <div />
     <div />
     <div />

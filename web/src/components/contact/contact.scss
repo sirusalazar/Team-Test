@@ -1,0 +1,9 @@
+@import "./ContactForm/ContactForm.scss";
+.contact-container {
+  display: flex;
+  justify-content: center;
+  .md-card {
+    padding: 20px 40px;
+    width: 35%;
+  }
+}

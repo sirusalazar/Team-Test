@@ -47,7 +47,7 @@ class ProductsPage extends Component {
           <Button flat iconChildren="list" onClick={this.changeViewMode}>
             List
           </Button>
-          <Button flat iconChildren="dashboard" onClick={this.changeViewMode}>
+          <Button flat iconChildren="view_module" onClick={this.changeViewMode}>
             Grid
           </Button>
           <span>

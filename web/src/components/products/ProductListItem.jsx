@@ -1,11 +1,6 @@
 import React from 'react';
 import {
-  Button,
-  Card,
-  CardTitle,
-  CardText,
-  Media,
-  MediaOverlay,
+ Card, CardTitle, CardText, Media 
 } from 'react-md';
 
 const ProductListItem = ({
