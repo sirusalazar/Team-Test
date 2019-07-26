@@ -1,25 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Cell, Button } from 'react-md';
+import { Grid, Cell } from 'react-md';
 import { bindActionCreators } from 'redux';
 
 import loadProducts from '../actions/productActions';
 import ProductList from '../components/products/ProductList';
+import ProductHeader from '../components/products/ProductHeader';
 import { Loading } from '../components/common';
 
 class ProductsPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { mode: 'Grid' };
+    this.state = { mode: 'Grid', search: '' };
     this.filterProducts = this.filterProducts.bind(this);
     this.changeViewMode = this.changeViewMode.bind(this);
+    this.searchProducts = this.searchProducts.bind(this);
   }
 
   componentWillMount() {
     this.props.loadProducts();
   }
 
+  componentDidMount() {
+    this.filterProducts();
+  }
+
   filterProducts() {
+    if (this.state.search) {
+      return this.filterProductsBySearch();
+    }
+    return this.filterProductsByCategory();
+  }
+
+  filterProductsByCategory() {
     const { category } = this.props.match.params;
     if (!category) {
       return this.props.products;
@@ -29,6 +42,19 @@ class ProductsPage extends Component {
         return p;
       }
     });
+  }
+
+  filterProductsBySearch() {
+    const { search } = this.state;
+    return this.props.products.filter((p) => {
+      if (JSON.stringify(p).indexOf(search) > -1) {
+        return p;
+      }
+    });
+  }
+
+  searchProducts(search) {
+    this.setState({ search });
   }
 
   changeViewMode(evt) {
@@ -44,20 +70,12 @@ class ProductsPage extends Component {
     return (
       <Grid>
         <Cell size={12}>
-          <Button flat iconChildren="list" onClick={this.changeViewMode}>
-            List
-          </Button>
-          <Button flat iconChildren="view_module" onClick={this.changeViewMode}>
-            Grid
-          </Button>
-          <span>
-            Showing:
-            <strong>{` ${filteredProducts.length} - `}</strong>
-            Hidden:
-            <strong>
-              {` ${this.props.products.length - filteredProducts.length} `}
-            </strong>
-          </span>
+          <ProductHeader
+            onChangeViewMode={this.changeViewMode}
+            filteredProducts={filteredProducts.length}
+            totalProducts={this.props.products.length}
+            onSearch={this.searchProducts}
+          />
         </Cell>
         <ProductList products={filteredProducts} mode={mode} />
       </Grid>
