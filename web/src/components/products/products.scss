@@ -1,0 +1,10 @@
+.product-details {
+  display: flex;
+  .product-photo {
+    margin-right: 20px;
+    img {
+      width: auto;
+      max-height: 100px;
+    }
+  }
+}

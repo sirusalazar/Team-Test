@@ -1,7 +1,5 @@
-import React from 'react';
-import {
- Card, CardTitle, CardText, Media 
-} from 'react-md';
+import React from "react";
+import { Card, CardTitle, CardText, Media } from "react-md";
 
 const ProductListItem = ({
   name,
@@ -10,17 +8,29 @@ const ProductListItem = ({
   categories,
   brand,
   price,
-  stock,
+  stock
 }) => {
-  const subtitle = `${categories.join(', ')} - ${brand}`;
+  const subtitle = `${categories.join(", ")} - ${brand}`;
   return (
     <Card className="cards__example">
       <CardTitle title={name} subtitle={subtitle} />
-      <Media>
-        <img src={photo} alt="Nature from lorempixel" />
-      </Media>
       <CardText>
-        <p>{description}</p>
+        <div className="product-details">
+          <div className="product-photo">
+            <img src={photo} alt="Nature from lorempixel" />
+          </div>
+          <div className="product-meta">
+            <p>{description}</p>
+            <div className="product-meta-pricing">
+              <div>
+                <strong>Stock</strong> {stock}
+              </div>
+              <div>
+                <strong>Price</strong> {price}
+              </div>
+            </div>
+          </div>
+        </div>
       </CardText>
     </Card>
   );
